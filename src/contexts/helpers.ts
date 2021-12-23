@@ -8,19 +8,13 @@ import { Keypair,
         TransactionInstruction,
         sendAndConfirmTransaction } from '@solana/web3.js';
 
-// for rest function
 import { Token, TOKEN_PROGRAM_ID, AccountLayout, MintLayout, AccountInfo } from "@solana/spl-token";
-//import { TokenInfo } from '@solana/spl-token-registry';
-import * as borsh from 'borsh';
 import bs58 from 'bs58';
 import * as anchor from '@project-serum/anchor';
 import {
-  chunks,
   showToast
 } from './utils';
-import axios from 'axios';
 import BN from 'bn.js';
-import fs from 'fs';
 import { WalletContextState } from '@solana/wallet-adapter-react';
 
 import { IDL as FirstIDL } from './anchor_idl/idl/first';
@@ -64,8 +58,6 @@ export const mintAndDeposit = async (amount: BN, wallet: WalletContextState) => 
     "minter",
     secondProgram.programId,
   );
-
-  
 
   let arrIx: Array<TransactionInstruction> = [];
   let minterPDA = await solConnection.getAccountInfo(minter_pda);
@@ -121,21 +113,6 @@ export const mintAndDeposit = async (amount: BN, wallet: WalletContextState) => 
   );
   arrIx.push(createTempTokenAccountIx, initTempAccountIx);
 
-  console.log("arrIx =", arrIx);
-  console.log("amount =", amount);
-  console.log("admin =", ADMIN_KEY_PAIR.publicKey.toBase58());
-  console.log("owner =", wallet.publicKey.toBase58());
-  console.log("sourceTokenAccount =", userTokenAccount.publicKey.toBase58());
-  console.log("sourceTokenMint =", TOKEN_MINT_PUBKEY.toBase58());
-  console.log("vaultTokenAccount =", VAULT_TOKEN_ACCOUNT_PUBKEY.toBase58());
-  console.log("minter_pda =", minter_pda.toBase58());
-  console.log("staker_pda =", staker_pda.toBase58());
-  console.log("staker_pda =", staker_pda.toBase58());
-  console.log("firstProgram.programId =", firstProgram.programId.toBase58());
-  
-  let walletSigner = Keypair.fromSecretKey(
-    bs58.decode("3EFsWUQQuU32XaTrvhQGaYqUhWJiPayWA64CrU7f6cU7Jdbbm77tJE2y89DfByuFavp8X3jwAxuG4oxbDhYXcHJG")
-  )
   let result = await secondProgram.rpc.mintAndDeposit(
     new anchor.BN(amount).mul(decimal_value),
     {
@@ -184,14 +161,6 @@ export const withdraw = async (wallet: WalletContextState) => {
     showToast("no token account", 1);
     return false;
   }
-  console.log("admin =", ADMIN_KEY_PAIR.publicKey.toBase58());
-  console.log("owner =", wallet.publicKey.toBase58());
-  console.log("sourceTokenAccount =", userTokenAccount.toBase58());
-  console.log("sourceTokenMint =", TOKEN_MINT_PUBKEY.toBase58());
-  console.log("vaultTokenAccount =", VAULT_TOKEN_ACCOUNT_PUBKEY.toBase58());
-  console.log("staker_pda =", staker_pda.toBase58());
-  console.log("firstProgram.programId =", firstProgram.programId.toBase58());
-
   let result = await firstProgram.rpc.withdraw({
     accounts: {
       admin: ADMIN_KEY_PAIR.publicKey,
