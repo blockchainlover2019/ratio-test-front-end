@@ -2,6 +2,7 @@
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-> Free React Admin Dashboard made with Material-UI components and React.
+> Solana Token Staking
+## Hosting at https://ratio-finance-cpi-test.web.app/dashboard/products
 
 ![preview](public/static/preview.png)
