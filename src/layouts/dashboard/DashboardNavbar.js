@@ -55,6 +55,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
           <Grid container>
             <Grid item xs={10}>
                 <img src='/static/ratio.svg' style={{width:'200px', height:'70px'}}></img>
+                <span style={{color: '#e79062', fontWeight:'bold'}}>Orca.so Integration</span>
             </Grid>
             <Grid item xs={2}>
               

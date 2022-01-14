@@ -11,11 +11,9 @@ import { Keypair,
 import { Token, TOKEN_PROGRAM_ID, AccountLayout, MintLayout, AccountInfo } from "@solana/spl-token";
 import bs58 from 'bs58';
 import * as anchor from '@project-serum/anchor';
-import {
-  showToast
-} from './utils';
-import BN from 'bn.js';
+import BN from 'bn.js'; 
 import { WalletContextState } from '@solana/wallet-adapter-react';
+import { toast } from 'react-toastify';
 
 import { IDL as FirstIDL } from './anchor_idl/idl/first';
 import { IDL as SecondIDL } from './anchor_idl/idl/second';
@@ -237,4 +235,20 @@ const getTokenAccount = async (owner: PublicKey, tokenMint : PublicKey) : Promis
     }
   );
   return tokenAccount[0].pubkey;
+}
+
+export const showToast = (txt: string, ty: number) => {
+  let type = toast.TYPE.SUCCESS;
+  if (ty === 1) type = toast.TYPE.ERROR;
+  toast.error(txt, {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    type,
+    theme: 'colored'
+  });
 }
