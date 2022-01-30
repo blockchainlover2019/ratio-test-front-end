@@ -61,6 +61,7 @@
     "@solana/wallet-adapter-wallets": "^0.11.1",
     "@solana/web3.js": "^1.30.2",
     "@testing-library/jest-dom": "^5.14.1",
+    "anchor": "project-serum/anchor",
     "apexcharts": "^3.28.3",
     "buffer-layout": "1.2.1",
     "change-case": "^4.1.2",

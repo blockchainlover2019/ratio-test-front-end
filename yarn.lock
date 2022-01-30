@@ -3264,6 +3264,10 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.npmjs.org/alphanum-sort/-/alphanum-sort-1.0.2.tgz"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+anchor@project-serum/anchor:
+  version "0.0.0"
+  resolved "https://codeload.github.com/project-serum/anchor/tar.gz/e48f84c6bd7122a7d7744be2a9b25b7e8d2efc11"
+
 ansi-colors@^3.0.0:
   version "3.2.4"
   resolved "https://registry.npmjs.org/ansi-colors/-/ansi-colors-3.2.4.tgz"
